@@ -5,7 +5,7 @@
 //等待页面加载完成，防止全局变量污染
 $(function(){
 
-$('form').bootstrapValidator({
+     $('form').bootstrapValidator({
     //密码不能为空，密码的长度在6-12位
     //配置校验规则
     fields:{
@@ -22,6 +22,9 @@ $('form').bootstrapValidator({
                     max:6,
                     message:'长度应在2到6位之间'
                 },
+                callback:{
+                    message:'用户名错误'
+                }
 
 
             }
@@ -41,6 +44,9 @@ $('form').bootstrapValidator({
                     min:6,
                     max:12,
                     message:'密码长度应该为6到12位'
+                },
+                callback:{
+                    message:'密码错误'
                 }
 
             }
@@ -66,7 +72,7 @@ $('form').bootstrapValidator({
     $('form').on('success.form.bv',function(e){
         //阻止浏览器默认行为
         e.preventDefault();
-        console.log('hhh');
+        //console.log('hhh');
 
         $.ajax({
             type:'post',
@@ -75,15 +81,26 @@ $('form').bootstrapValidator({
             success:function(info){
                 console.log(info);
                 if(info.error === 1000){
-                    alert('用户名错误')
+                    $('form').data('bootstrapValidator').updateStatus('username','INVALID','callback');
                 }
 
                 if(info.error === 1001){
-                    alert('密码错误')
+                    $('form').data('bootstrapValidator').updateStatus('password','INVALID','callback');
+                }
+
+                if(info.success){
+                    location.href = 'index.html';
                 }
             }
         })
 
+    });
+
+
+    //重置表单，清除所有的表单样式
+    $('[type="reset"]').on('click',function(){
+
+        $('form').data('bootstrapValidator').resetForm(true);
     })
 
 
