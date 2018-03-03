@@ -60,7 +60,37 @@ $('form').bootstrapValidator({
     },
 
 
-})
+});
+
+    //给表单注册校验成功的事件，成功的时候阻止表单的默认提交，使用ajax
+    $('form').on('success.form.bv',function(e){
+        //阻止浏览器默认行为
+        e.preventDefault();
+        console.log('hhh');
+
+        $.ajax({
+            type:'post',
+            url:'/employee/employeeLogin',
+            data:$('form').serialize(),
+            success:function(info){
+                console.log(info);
+                if(info.error === 1000){
+                    alert('用户名错误')
+                }
+
+                if(info.error === 1001){
+                    alert('密码错误')
+                }
+            }
+        })
+
+    })
+
+
+
+
+
+
 
 
 
