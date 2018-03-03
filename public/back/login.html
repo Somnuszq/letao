@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="lib/bootstrap-validator/css/bootstrapValidator.min.css"/>
     <link rel="stylesheet" href="css/common.css"/>
 
     <title>登录页</title>
@@ -20,13 +21,13 @@
                     <div class="form-group">
                         <label for="username" class="col-sm-3 control-label">用户名</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="username" placeholder="请输入用户名" name="username">
+                            <input type="text" class="form-control" id="username" autocomplete="off" placeholder="请输入用户名" name="username">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-sm-3 control-label">密码</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="password" placeholder="请输入密码" name="password">
+                            <input type="password" class="form-control" id="password" autocomplete="off" placeholder="请输入密码" name="password">
                         </div>
                     </div>
 
@@ -47,6 +48,7 @@
 </html>
 <script src="lib/jquery/jquery.min.js"></script>
 <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 <script src="js/common.js"></script>
 <script src="js/login.js"></script>
 
